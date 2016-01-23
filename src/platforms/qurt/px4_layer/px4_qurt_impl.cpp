@@ -71,9 +71,7 @@ unsigned int sleep(unsigned int sec)
 }
 
 extern void hrt_init(void);
-extern void init_own_params();
-extern unsigned int init_other_params();
-extern unsigned int param_sync_done;
+extern void init_params();
 
 #if 0
 void qurt_log(const char *fmt, ...)
@@ -112,9 +110,8 @@ void init_once(void)
 	hrt_init();
 	PX4_WARN("after calling hrt_init");
 
-	/*Shared memory param sync*/
-	init_own_params();
-	param_sync_done=init_other_params();
+	/* Shared memory param sync*/
+	init_params();
 }
 
 void init(int argc, char *argv[], const char *app_name)
@@ -169,3 +166,15 @@ int write(int a, char const *b, int c)
 {
 	return -1;
 }
+
+int fprintf(FILE *stream, const char *format, ...)
+{
+	return 0;
+}
+
+int fputc(int c, FILE *stream)
+{
+	return c;
+}
+
+FILE _Stderr;
