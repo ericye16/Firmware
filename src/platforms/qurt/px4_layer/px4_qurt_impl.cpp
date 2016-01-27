@@ -157,18 +157,18 @@ size_t strnlen(const char *s, size_t maxlen)
 	return i;
 }
 
-int ioctl(int a, int b, unsigned long c)
+static void block_indefinite(void)
 {
-	return -1;
-}
-
-int write(int a, char const *b, int c)
-{
-	return -1;
+	for (;;) {
+		volatile int x = 0;
+		++x;
+	}
 }
 
 int fprintf(FILE *stream, const char *format, ...)
 {
+	PX4_ERR("Error: Calling unresolved symbol stub[%s]", __FUNCTION__);
+	block_indefinite();
 	return 0;
 }
 
@@ -176,5 +176,3 @@ int fputc(int c, FILE *stream)
 {
 	return c;
 }
-
-FILE _Stderr;
