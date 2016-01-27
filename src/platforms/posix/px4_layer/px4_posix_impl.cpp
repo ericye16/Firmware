@@ -87,7 +87,6 @@ void init_once(void)
 	PX4_INFO("Syncing params to shared memory\n");
 	init_params();
 #endif
-#endif
 }
 
 void init(int argc, char *argv[], const char *app_name)
