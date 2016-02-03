@@ -31,9 +31,6 @@
  *
  ****************************************************************************/
 
-// TODO-JYW: TESTING-TESTING
-#define DEBUG_BUILD 1
-
 #include "px4muorb.hpp"
 #include "uORBFastRpcChannel.hpp"
 #include "uORBManager.hpp"
