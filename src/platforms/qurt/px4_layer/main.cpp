@@ -36,9 +36,6 @@
  * @author Mark Charlebois <charlebm@gmail.com>
  */
 
-// TODO-JYW: TESTING-TESTING:
-#define DEBUG_BUILD	1
-
 #include <px4_middleware.h>
 #include <px4_tasks.h>
 #include <px4_time.h>
@@ -52,9 +49,6 @@
 #include <stdlib.h>
 #include "get_commands.h"
 #include "apps.h"
-
-// TODO-JYW: TESTING-TESTING:
-#define DEBUG_BUILD 1
 
 using namespace std;
 
