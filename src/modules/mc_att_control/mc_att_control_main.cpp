@@ -676,6 +676,10 @@ MulticopterAttitudeControl::control_attitude(float dt)
 	/* calculate weight for yaw control */
 	float yaw_w = R_sp(2, 2) * R_sp(2, 2);
 
+	// TODO-JYW: TESTING-TESTING
+	warnx("yaw_w: %f", (double)yaw_w);
+	// TODO-JYW: TESTING-TESTING
+
 	/* calculate rotation matrix after roll/pitch only rotation */
 	math::Matrix<3, 3> R_rp;
 
@@ -735,6 +739,9 @@ MulticopterAttitudeControl::control_attitude(float dt)
 		}
 	}
 
+	// TODO-JYW: TESTING-TESTING
+	warnx("_v_att_sp.disable_mc_yaw_control = %d", _v_att_sp.disable_mc_yaw_control);
+
 	/* weather-vane mode, dampen yaw rate */
 	if (_v_att_sp.disable_mc_yaw_control == true && _v_control_mode.flag_control_velocity_enabled && !_v_control_mode.flag_control_manual_enabled) {
 		float wv_yaw_rate_max = _params.auto_rate_max(2) * _params.vtol_wv_yaw_rate_scale;
@@ -754,6 +761,10 @@ MulticopterAttitudeControl::control_attitude(float dt)
 		_rates_int(2) = 0.0f;
 	}
 
+	// TODO-JYW: TESTING-TESTING:
+	warnx("_rates_sp(2) = %f", (double)_rates_sp(2));
+
+	// TODO-JYW: LEFT-OFF: Rerun to obtain the above debug values.
 }
 
 /*
