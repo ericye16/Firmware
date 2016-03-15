@@ -79,6 +79,10 @@ int get_shmem_lock(const char *caller_file_name, int caller_line_number)
 	unsigned char *lock = (unsigned char *)(MAP_ADDRESS + LOCK_OFFSET);
 	unsigned int i = 0;
 
+	// TODO-JYW: TESTING-TESTING
+	PX4_INFO("Attempting to get lock from aDSP, current lock value: %d, file name: %s, line number: %d.\n",
+				 *lock, caller_file_name, caller_line_number);
+
 	while (!atomic_compare_and_set(lock, 1, 0)) {
 		PX4_INFO("Could not get lock, file name: %s, line number: %d.\n",
 			 caller_file_name, caller_line_number);
@@ -102,6 +106,10 @@ int get_shmem_lock(const char *caller_file_name, int caller_line_number)
 void release_shmem_lock(void)
 {
 	unsigned char *lock = (unsigned char *)(MAP_ADDRESS + LOCK_OFFSET);
+
+	// TODO-JYW: TESTING-TESTING
+	PX4_INFO("Attempting to release lock from aDSP, current lock value: %d.\n",
+				 *lock);
 
 	*lock = 1;
 	return;

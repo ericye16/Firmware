@@ -104,6 +104,9 @@ int get_shmem_lock(const char *caller_file_name, int caller_line_number)
 {
 	int i = 0;
 
+	// TODO-JYW: TESTING-TESTING
+	PX4_INFO("Attempting to get lock from the AP, file name: %s, line number: %d\n", caller_file_name, caller_line_number);
+
 	/*ioctl calls cmpxchg*/
 	while (ioctl(mem_fd, LOCK_MEM) != 0) {
 		PX4_INFO("Could not get lock, file name: %s, line number: %d\n", caller_file_name, caller_line_number);
@@ -116,14 +119,24 @@ int get_shmem_lock(const char *caller_file_name, int caller_line_number)
 	}
 
 	if (i > 100) {
+
+		// TODO-JYW: TESTING-TESTING
+		PX4_INFO("Timed out attempting to get lock from the AP, file name: %s, line number: %d\n", caller_file_name, caller_line_number);
+
 		return -1;
 	}
+
+	// TODO-JYW: TESTING-TESTING
+	PX4_INFO("Successfully got lock from the AP, file name: %s, line number: %d\n", caller_file_name, caller_line_number);
 
 	return 0; //got the lock
 }
 
 void release_shmem_lock(void)
 {
+	// TODO-JYW: TESTING-TESTING:
+	PX4_INFO("Attempting to release lock from the AP.da");
+
 	ioctl(mem_fd, UNLOCK_MEM);
 }
 
