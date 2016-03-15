@@ -108,7 +108,9 @@ int get_shmem_lock(const char *caller_file_name, int caller_line_number)
 	PX4_INFO("Attempting to get lock from the AP, file name: %s, line number: %d\n", caller_file_name, caller_line_number);
 
 	/*ioctl calls cmpxchg*/
-	while (ioctl(mem_fd, LOCK_MEM) != 0) {
+	// TODO-JYW: TESTING-TESTING
+	while (get_shmem_lock(caller_file_name, caller_line_number) != 0) {
+//	while (ioctl(mem_fd, LOCK_MEM) != 0) {
 		PX4_INFO("Could not get lock, file name: %s, line number: %d\n", caller_file_name, caller_line_number);
 		usleep(100000); //sleep for 100 msec
 		i++;
@@ -135,9 +137,13 @@ int get_shmem_lock(const char *caller_file_name, int caller_line_number)
 void release_shmem_lock(void)
 {
 	// TODO-JYW: TESTING-TESTING:
-	PX4_INFO("Attempting to release lock from the AP.da");
+	PX4_INFO("Attempting to release lock from the AP.");
 
-	ioctl(mem_fd, UNLOCK_MEM);
+	// TOOD-JYW: TESTING-TESTING
+	release_shmem_lock();
+
+	// TOOD-JYW: TESTING-TESTING
+	// ioctl(mem_fd, UNLOCK_MEM);
 }
 
 void init_shared_memory(void)

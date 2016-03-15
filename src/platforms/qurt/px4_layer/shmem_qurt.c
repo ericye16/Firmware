@@ -74,6 +74,15 @@ static void *map_memory(off_t target)
 
 }
 
+// TODO-JYW: TESTING-TESTING
+extern int px4muorb_get_shmem_lock(const char *caller_file_name, int caller_line_number);
+
+// TODO-JYW: TESTING-TESTING
+int px4muorb_get_shmem_lock(const char *caller_file_name, int caller_line_number)
+{
+	return get_shmem_lock(caller_file_name, caller_line_number);
+}
+
 int get_shmem_lock(const char *caller_file_name, int caller_line_number)
 {
 	unsigned char *lock = (unsigned char *)(MAP_ADDRESS + LOCK_OFFSET);
@@ -83,6 +92,8 @@ int get_shmem_lock(const char *caller_file_name, int caller_line_number)
 	PX4_INFO("Attempting to get lock from aDSP, current lock value: %d, file name: %s, line number: %d.\n",
 				 *lock, caller_file_name, caller_line_number);
 
+	// TODO-JYW: TESTING-TESTING
+//	while (atomic_compare_and_set(lock, 1, 0)) {
 	while (!atomic_compare_and_set(lock, 1, 0)) {
 		PX4_INFO("Could not get lock, file name: %s, line number: %d.\n",
 			 caller_file_name, caller_line_number);
@@ -101,6 +112,15 @@ int get_shmem_lock(const char *caller_file_name, int caller_line_number)
 
 	return 0; //got the lock
 
+}
+
+// TODO-JYW: TESTING-TESTING:
+extern void px4muorb_release_shmem_lock(void);
+
+// TODO-JYW: TESTING-TESTING
+void px4muorb_release_shmem_lock(void)
+{
+	release_shmem_lock();
 }
 
 void release_shmem_lock(void)
