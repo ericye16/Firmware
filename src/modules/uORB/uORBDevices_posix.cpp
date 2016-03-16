@@ -45,6 +45,8 @@
 
 std::map<std::string, uORB::DeviceNode *> uORB::DeviceMaster::_node_map;
 
+// TODO-JYW: TESTING-TESTING:
+#define DEBUG_BUILD 1
 
 uORB::DeviceNode::SubscriberData  *uORB::DeviceNode::filp_to_sd(device::file_t *filp)
 {
@@ -685,6 +687,13 @@ uORB::DeviceMaster::ioctl(device::file_t *filp, int cmd, unsigned long arg)
 
 uORB::DeviceNode *uORB::DeviceMaster::GetDeviceNode(const char *nodepath)
 {
+	// TODO-JYW: TESTING-TESTING:
+	warnx("DeviceMaster::GetDeviceNode: nodepath address: 0x%X", nodepath);
+	if (nodepath == nullptr) {
+		while (true);
+	}
+
+
 	uORB::DeviceNode *rc = nullptr;
 	std::string np(nodepath);
 

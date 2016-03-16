@@ -75,10 +75,10 @@ static void *map_memory(off_t target)
 }
 
 // TODO-JYW: TESTING-TESTING
-extern int px4muorb_get_shmem_lock(const char *caller_file_name, int caller_line_number);
+extern int px4muorb_adsp_get_shmem_lock(const char *caller_file_name, int caller_line_number);
 
 // TODO-JYW: TESTING-TESTING
-int px4muorb_get_shmem_lock(const char *caller_file_name, int caller_line_number)
+int px4muorb_adsp_get_shmem_lock(const char *caller_file_name, int caller_line_number)
 {
 	return get_shmem_lock(caller_file_name, caller_line_number);
 }
@@ -115,10 +115,10 @@ int get_shmem_lock(const char *caller_file_name, int caller_line_number)
 }
 
 // TODO-JYW: TESTING-TESTING:
-extern void px4muorb_release_shmem_lock(void);
+extern void px4muorb_adsp_release_shmem_lock(void);
 
 // TODO-JYW: TESTING-TESTING
-void px4muorb_release_shmem_lock(void)
+void px4muorb_adsp_release_shmem_lock(void)
 {
 	release_shmem_lock();
 }

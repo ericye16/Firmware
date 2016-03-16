@@ -32,8 +32,8 @@
 interface px4muorb{
 
    /* TODO-JYW: TESTING-TESTING */
-   void release_shmem_lock();
-   AEEResult get_shmem_lock(in string caller_file_name, in long caller_line_number);
+   void adsp_release_shmem_lock();
+   AEEResult adsp_get_shmem_lock(in string caller_file_name, in long caller_line_number);
   
    /**
     * interface method to start the uorb service and initialize the muorb

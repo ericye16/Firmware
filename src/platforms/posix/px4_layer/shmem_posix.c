@@ -52,6 +52,9 @@
 
 #include <shmem.h>
 
+// TODO-JYW: TESTING-TESTING:
+#include "px4muorb.h"
+
 #define SHMEM_DEBUG
 
 int mem_fd;
@@ -109,7 +112,7 @@ int get_shmem_lock(const char *caller_file_name, int caller_line_number)
 
 	/*ioctl calls cmpxchg*/
 	// TODO-JYW: TESTING-TESTING
-	while (get_shmem_lock(caller_file_name, caller_line_number) != 0) {
+	while (px4muorb_adsp_get_shmem_lock(caller_file_name, caller_line_number) != 0) {
 //	while (ioctl(mem_fd, LOCK_MEM) != 0) {
 		PX4_INFO("Could not get lock, file name: %s, line number: %d\n", caller_file_name, caller_line_number);
 		usleep(100000); //sleep for 100 msec
@@ -140,7 +143,7 @@ void release_shmem_lock(void)
 	PX4_INFO("Attempting to release lock from the AP.");
 
 	// TOOD-JYW: TESTING-TESTING
-	release_shmem_lock();
+	px4muorb_adsp_release_shmem_lock();
 
 	// TOOD-JYW: TESTING-TESTING
 	// ioctl(mem_fd, UNLOCK_MEM);
