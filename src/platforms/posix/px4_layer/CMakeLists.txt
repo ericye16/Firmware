@@ -35,6 +35,10 @@ if("${CONFIG_SHMEM}" STREQUAL "1")
 	list(APPEND SHMEM_SRCS
 		shmem_posix.c
 	)
+	include_directories(
+		${CMAKE_BINARY_DIR}/src/firmware/posix
+		${HEXAGON_SDK_ROOT}/inc/stddef
+		)
 endif()
 
 px4_add_module(
